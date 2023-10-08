@@ -27,7 +27,7 @@ mkdir {src,public}
 > Copy paste this as whole and run all at once.
 
 ```bash
-# Optionally: Create a basic App component
+# Create a basic App component
 cat > src/App.js << 'EOF'
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -48,7 +48,7 @@ EOF
 > Copy paste this as whole and run all at once.
 
 ```bash
-# Optionally: Create a basic index.js file
+# Create a basic index.js file
 cat > src/index.js << 'EOF'
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -64,7 +64,7 @@ EOF
 > Copy paste this as whole and run all at once.
 
 ```bash
-# Optionally: Create a basic index.html file
+# Create a basic index.html file
 cat > public/index.html << 'EOF'
 <!DOCTYPE html>
 <html lang="en">
