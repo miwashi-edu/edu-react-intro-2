@@ -23,6 +23,9 @@ mkdir {src,public}
 ```
 
 ## Skapa App.js
+
+> Copy paste this as whole and run all at once.
+
 ```bash
 # Optionally: Create a basic App component
 cat > src/App.js << 'EOF'
@@ -41,6 +44,9 @@ EOF
 ```
 
 ## Create index.js
+
+> Copy paste this as whole and run all at once.
+
 ```bash
 # Optionally: Create a basic index.js file
 cat > src/index.js << 'EOF'
@@ -54,6 +60,9 @@ EOF
 ```
 
 # Create index.html
+
+> Copy paste this as whole and run all at once.
+
 ```bash
 # Optionally: Create a basic index.html file
 cat > public/index.html << 'EOF'
