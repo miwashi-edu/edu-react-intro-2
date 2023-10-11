@@ -3,7 +3,7 @@
 ## Create Project
 
 ```bash
-npm install --save-dev @testing-library/react jest
+npm install --save-dev @testing-library/react @testing-library/jest-dom jest
 touch ./src/App.test.js
 ```
 
