@@ -3,126 +3,104 @@
 ## Create Project
 
 ```bash
-#Create directory for react application
-mkdir react-app && cd react-app
 
-# Initialize a new Node.js project
-npm init -y
-
-# Install React, ReactDOM, and React Scripts
-npm install react react-dom 
-npm install -D react-scripts
-
-# Set up scripts in package.json
-npm pkg set scripts.start="react-scripts start"
-npm pkg set scripts.build="react-scripts build"
-npm pkg set scripts.test="react-scripts test"
-npm pkg set scripts.eject="react-scripts eject"
-
-mkdir {src,public}
-touch ./src/App.js
-touch ./src/App.css
-touch ./src/index.js
-touch ./public/index.html
 ```
 
-## Skapa App.js
-
-> Copy paste this as whole and run all at once.
+## Skapa ./src/App.js
 
 ```bash
 # Create a basic App component
 cat > src/App.js << 'EOF'
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState } from 'react';
+import './App.css';
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const handleLogin = () => {
+    if (email === 'user@example.com' && password === 'password') {
+      setIsLoggedIn(true);
+    } else {
+      setError('Not authorized');
+    }
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setEmail('');
+    setPassword('');
+    setError('');
+  };
+
   return (
-    <div>
-      <h1>Hello, React!</h1>
+    <div className="App">
+      {isLoggedIn ? (
+        <button onClick={handleLogout}>Log Out</button>
+      ) : (
+        <div className="login-dialog">
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+          />
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+          />
+          <button onClick={handleLogin}>Log In</button>
+          {error && <p className="error">{error}</p>}
+        </div>
+      )}
     </div>
   );
 }
+
 export default App;
 EOF
 ```
 
-## Create index.js
-
-> Copy paste this as whole and run all at once.
+## Create ./src/App.css
 
 ```bash
-# Create a basic index.js file
-cat > src/index.js << 'EOF'
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
+cat > src/App.css << 'EOF'
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f8f8f8;
+}
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
+.login-dialog {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+input {
+  display: block;
+  margin: 10px auto;
+  padding: 8px;
+  width: 200px;
+}
+
+button {
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+  margin-top: 10px;
+}
 EOF
 ```
-
-# Create index.html
-
-> Copy paste this as whole and run all at once.
-
-```bash
-# Create a basic index.html file
-cat > public/index.html << 'EOF'
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>React App</title>
-</head>
-<body>
-    <div id="root"></div>
-</body>
-</html>
-EOF
-```
-
-## Run the application first time
-
-> You will be asked to add browser support to your package.json, accept that!
-
-```bash
-# Start the application
-npm start
-
-? We're unable to detect target browsers.
-
-Would you like to add the defaults to your package.json? › (Y/n)y
-```
-
-### Added to your package.json
-
-> Just answer yes, and this will be added.
-> This tells the transpiler what requirement your application will support.
-
-```json
-"browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
-```
-## Add the missing dependency
-
-> Add  --loglevel=error or --silent when adding development dependencies, otherwise react-scripts will warn.
-
-```
-npm install -D @babel/plugin-proposal-private-property-in-object  --loglevel=error
-```
-
 
 
