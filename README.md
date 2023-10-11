@@ -20,6 +20,10 @@ npm pkg set scripts.test="react-scripts test"
 npm pkg set scripts.eject="react-scripts eject"
 
 mkdir {src,public}
+touch ./src/App.js
+touch ./src/App.css
+touch ./src/index.js
+touch ./public/index.html
 ```
 
 ## Skapa App.js
