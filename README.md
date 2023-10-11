@@ -99,6 +99,18 @@ button {
   cursor: pointer;
   background-color: #27ae60; /* Green background for button */
   color: #ecf0f1; /* Light text for button */
+  border: none; /* Remove border for button */
+  border-radius: 4px; /* Rounded corners for button */
+}
+
+button:hover {
+  background-color: #2ecc71; /* Lighter green for button hover */
+}
+
+.error {
+  color: #e74c3c; /* Red color for error message */
+  margin-top: 10px;
+}
 EOF
 ```
 
