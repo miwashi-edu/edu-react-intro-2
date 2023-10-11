@@ -4,7 +4,7 @@
 
 ```bash
 npm install --save-dev cypress
-npm pgk set scripts.cypress:open="cypress open"
+npm pkg set scripts.cypress:open="cypress open"
 mkdir -p ./cypress/integration
 touch ./cypress/integration/login_spec.js
 ```
