@@ -74,11 +74,12 @@ cat > src/App.css << 'EOF'
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #f8f8f8;
+  background-color: #2c3e50; /* Darker background for contrast */
+  color: #ecf0f1; /* Light text for contrast */
 }
 
 .login-dialog {
-  background-color: #fff;
+  background-color: #ecf0f1; /* Lighter background for dialog */
   padding: 20px;
   border-radius: 8px;
   text-align: center;
@@ -89,17 +90,15 @@ input {
   margin: 10px auto;
   padding: 8px;
   width: 200px;
+  border: 1px solid #7f8c8d; /* Subtle border for inputs */
+  border-radius: 4px; /* Rounded corners for inputs */
 }
 
 button {
   padding: 8px 16px;
   cursor: pointer;
-}
-
-.error {
-  color: red;
-  margin-top: 10px;
-}
+  background-color: #27ae60; /* Green background for button */
+  color: #ecf0f1; /* Light text for button */
 EOF
 ```
 
