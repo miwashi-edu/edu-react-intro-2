@@ -5,6 +5,10 @@
 ```bash
 npm install --save-dev cypress
 npm pkg set scripts.cypress:open="cypress open"
+npm pkg set scripts.cypress="cypress run --browser chrome"
+npm pkg set scripts.cypress:chrome="cypress run --browser chrome"
+npm pkg set scripts.cypress:firefox="cypress run --browser firefox"
+npm pkg set scripts.cypress:edge="cypress run --browser edge"
 mkdir -p ./cypress/e2e
 touch ./cypress/e2e/login.cy.js
 ```
