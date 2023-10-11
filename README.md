@@ -5,16 +5,16 @@
 ```bash
 npm install --save-dev cypress
 npm pkg set scripts.cypress:open="cypress open"
-mkdir -p ./cypress/integration
-touch ./cypress/integration/login_spec.js
+mkdir -p ./cypress/e2e
+touch ./cypress/e2e/login.cy.js
 ```
 
 
 
-## Create ./cypress/integration/login_spec.js
+## Create ./cypress/e2e/login.cy.js
 
 ```
-cat > ./cypress/integration/login_spec.js << 'EOF'
+cat > ./cypress/e2e/login.cy.js << 'EOF'
 describe('Login Tests', () => {
 
   beforeEach(() => {
