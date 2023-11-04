@@ -6,7 +6,7 @@
 #
 cd ~
 cd ws
-mr -rf react-app # If it exists from before.
+rm -rf react-app # If it exists from before.
 
 #Create directory for react application
 mkdir react-app && cd react-app
