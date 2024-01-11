@@ -17,7 +17,7 @@ npm init -y
 # Install React, ReactDOM, and React Scripts
 npm install react react-dom 
 npm install -D react-scripts
-
+ 
 # Set up scripts in package.json
 npm pkg set scripts.start="react-scripts start"
 npm pkg set scripts.build="react-scripts build"
