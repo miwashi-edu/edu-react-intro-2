@@ -1,5 +1,8 @@
 # edu-react-intro-2
 
+
+[Cypress](https://www.cypress.io)
+
 ## Create Project
 
 ```bash
