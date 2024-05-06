@@ -38,9 +38,6 @@ touch ./public/index.html
 ```bash
 # Create a basic App component
 cat > src/App.js << 'EOF'
-import React from 'react';
-import ReactDOM from 'react-dom';
-
 function App() {
   return (
     <div>
