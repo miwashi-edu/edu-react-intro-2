@@ -10,7 +10,9 @@ npm pkg set scripts.cypress:chrome="cypress run --browser chrome"
 npm pkg set scripts.cypress:firefox="cypress run --browser firefox"
 npm pkg set scripts.cypress:edge="cypress run --browser edge"
 mkdir -p ./cypress/e2e
+mkdir -p  ./cypress/support
 touch ./cypress/e2e/login.cy.js
+touch ./cypress/support/index.js
 ```
 
 
@@ -56,6 +58,37 @@ describe('Login Tests', () => {
     // Check that "Log In" button is shown again after logging out
     cy.get('button').contains('Log In').should('be.visible');
   });
+});
+EOF
+```
+
+## Create ./cypress.config.js
+
+```bash
+cat > ./cypress/e2e/login.cy.js << 'EOF'
+const { defineConfig } = require('cypress');
+module.exports = defineConfig({
+  e2e: {
+    // Folder where Cypress will look for test files
+    specPattern: 'cypress/e2e/**/*.{js,jsx}',
+    // The base URL for your app
+    baseUrl: 'http://localhost:3000',
+    // Folder where Cypress will store test artifacts (videos, screenshots, etc.)
+    videosFolder: 'cypress/videos',
+    screenshotsFolder: 'cypress/screenshots',
+    // Folder where Cypress will store fixtures (static data for tests)
+    fixturesFolder: 'cypress/fixtures',
+    // Folder where Cypress will store test support files
+    supportFile: 'cypress/support/index.js',
+  },
+  // Additional configuration options
+  viewportWidth: 1280,
+  viewportHeight: 720,
+  video: true, // Enable video recording
+  retries: {
+    runMode: 2, // Retry failed tests in run mode up to 2 times
+    openMode: 0, // No retries in interactive mode
+  },
 });
 EOF
 ```
