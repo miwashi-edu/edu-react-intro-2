@@ -68,7 +68,7 @@ EOF
 ## Create ./cypress.config.js
 
 ```bash
-cat > ./cypress/e2e/login.cy.js << 'EOF'
+cat > ./cypress.config.js << 'EOF'
 const { defineConfig } = require('cypress');
 module.exports = defineConfig({
   e2e: {
