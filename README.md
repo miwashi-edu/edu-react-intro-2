@@ -25,7 +25,7 @@ npm pkg set scripts.test="react-scripts test"
 npm pkg set scripts.eject="react-scripts eject"
 
 mkdir {src,public}
-touch ./src/App.js
+touch ./src/App.jsx
 touch ./src/App.css
 touch ./src/index.js
 touch ./public/index.html
@@ -37,7 +37,7 @@ touch ./public/index.html
 
 ```bash
 # Create a basic App component
-cat > src/App.js << 'EOF'
+cat > src/App.jsx << 'EOF'
 function App() {
   return (
     <div>
