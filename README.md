@@ -11,7 +11,7 @@ touch ./src/App.test.js
 
 ```bash
 # Create a basic App component
-cat > src/App.js << 'EOF'
+cat > src/App.jsx << 'EOF'
 import React, { useState } from 'react';
 import './App.css';
 
