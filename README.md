@@ -7,26 +7,20 @@
 cd ~
 cd ws
 rm -rf react-app # If it exists from before.
-
-#Create directory for react application
 mkdir react-app && cd react-app
-
-# Initialize a new Node.js project
 npm init -y
 
-# Install React, ReactDOM, and React Scripts
 npm install react react-dom
-npm install --save-dev webpack webpack-cli webpack-dev-server
-npm install --save-dev @babel/core @babel/preset-env @babel/preset-react babel-loader
-#npm install -D react-scripts
 
-# Set up scripts in package.json
+npm install --save-dev webpack
+npm install --save-dev webpack-cli
+npm install --save-dev webpack-dev-server
+npm install --save-dev @babel/core @babel/preset-env
+npm install --save-dev @babel/preset-react babel-loader
+npm install --save-dev html-webpack-plugin
+
 npm pkg set scripts.start="webpack serve --mode development --open"
 npm pkg set scripts.build="webpack --mode production"
-#npm pkg set scripts.start="react-scripts start"
-#npm pkg set scripts.build="react-scripts build"
-#npm pkg set scripts.test="react-scripts test"
-#npm pkg set scripts.eject="react-scripts eject"
 
 mkdir {src,public}
 touch ./src/App.jsx
@@ -37,11 +31,11 @@ touch ./public/index.html
 
 ## Skapa App.js
 
-> Copy paste this as whole and run all at once.
-
 ```bash
 # Create a basic App component
 cat > src/App.jsx << 'EOF'
+import React from 'react';
+
 function App() {
   return (
     <div>
@@ -106,81 +100,51 @@ EOF
 cat > webpack.config.js << 'EOF'
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
 module.exports = {
   entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'), // Output directory
+    filename: 'bundle.js' // Output file
   },
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.(js|jsx)$/, // Handle .js and .jsx files
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
-        },
+          loader: 'babel-loader', // Use babel-loader for transpiling JavaScript
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react'] // Use presets for modern JS and React
+          }
+        }
       },
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        test: /\.css$/, // Handle CSS files
+        use: ['style-loader', 'css-loader'] // Use style-loader and css-loader for CSS
       }
-    ],
+    ]
+  },
+
+  resolve: {
+    extensions: ['.js', '.jsx'] // Automatically resolve these extensions
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './public/index.html',
-    }),
+      template: './public/index.html', // HTML file to use as a template
+      filename: 'index.html' // Output filename
+    })
   ],
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
-    compress: true,
-    port: 9000,
-  },
+    static: {
+      directory: path.join(__dirname, 'dist'), // Directory to serve files from
+    },
+    compress: true, // Enable gzip compression
+    port: 9000, // Port to run the server on
+    open: true, // Open the browser after server had been started
+    hot: true // Enable hot reloading
+  }
 };
 EOF
 ```
-
-## Run the application first time
-
-> You will be asked to add browser support to your package.json, accept that!
-
-```bash
-# Start the application
-npm start
-
-? We're unable to detect target browsers.
-
-Would you like to add the defaults to your package.json? › (Y/n)y
-```
-
-### Added to your package.json
-
-> Just answer yes, and this will be added.
-> This tells the transpiler what requirement your application will support.
-
-```json
-"browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
-```
-## Add the missing dependency
-
-> Add  --loglevel=error or --silent when adding development dependencies, otherwise react-scripts will warn.
-
-```
-npm install -D @babel/plugin-proposal-private-property-in-object  --loglevel=error
-```
-
 
 
