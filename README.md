@@ -15,14 +15,18 @@ mkdir react-app && cd react-app
 npm init -y
 
 # Install React, ReactDOM, and React Scripts
-npm install react react-dom 
-npm install -D react-scripts
+npm install react react-dom
+npm install --save-dev webpack webpack-cli webpack-dev-server
+npm install --save-dev @babel/core @babel/preset-env @babel/preset-react babel-loader
+#npm install -D react-scripts
 
 # Set up scripts in package.json
-npm pkg set scripts.start="react-scripts start"
-npm pkg set scripts.build="react-scripts build"
-npm pkg set scripts.test="react-scripts test"
-npm pkg set scripts.eject="react-scripts eject"
+npm pkg set scripts.start="webpack serve --mode development --open"
+npm pkg set scripts.build="webpack --mode production"
+#npm pkg set scripts.start="react-scripts start"
+#npm pkg set scripts.build="react-scripts build"
+#npm pkg set scripts.test="react-scripts test"
+#npm pkg set scripts.eject="react-scripts eject"
 
 mkdir {src,public}
 touch ./src/App.jsx
@@ -83,6 +87,58 @@ cat > public/index.html << 'EOF'
     <div id="root"></div>
 </body>
 </html>
+EOF
+```
+
+## Configure babel
+
+```bash
+cat > .babelrc < 'EOF'
+{
+  "presets": ["@babel/preset-env", "@babel/preset-react"]
+}
+EOF
+```
+
+## Configure Webpack
+
+```
+cat > webpack.config.js < 'EOF'
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      }
+    ],
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+    }),
+  ],
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    port: 9000,
+  },
+};
 EOF
 ```
 
