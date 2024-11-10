@@ -93,7 +93,7 @@ EOF
 ## Configure babel
 
 ```bash
-cat > .babelrc < 'EOF'
+cat > .babelrc << 'EOF'
 {
   "presets": ["@babel/preset-env", "@babel/preset-react"]
 }
@@ -103,7 +103,7 @@ EOF
 ## Configure Webpack
 
 ```
-cat > webpack.config.js < 'EOF'
+cat > webpack.config.js << 'EOF'
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
