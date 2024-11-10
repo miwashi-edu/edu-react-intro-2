@@ -102,7 +102,7 @@ EOF
 
 ## Configure Webpack
 
-```
+```bash
 cat > webpack.config.js << 'EOF'
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
