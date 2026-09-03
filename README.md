@@ -30,6 +30,7 @@ function App() {
 }
 
 export default App;
+EOF
 ```
 
 ## Create index.js
